@@ -1,0 +1,4 @@
+com\portfolio\repository\ContactRepository.class
+com\portfolio\entity\Contact.class
+com\portfolio\PortfolioApplication.class
+com\portfolio\controller\ContactController.class

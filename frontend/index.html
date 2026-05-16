@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashika | Full Stack Developer Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Ashika<span>.dev</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero-section">
+        <div class="hero-content">
+            <h3>Hello, It's Me</h3>
+            <h1>Ashika</h1>
+            <h3>And I'm a <span class="main-color-text">Full Stack Developer</span></h3>
+            <p>I build secure, scalable, and responsive web & mobile applications. Experienced with Java Spring Boot, Python, Flask, and Flutter.</p>
+            <div class="social-icons">
+                <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <a href="#" class="btn">Download Resume <i class="fas fa-download"></i></a>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <h2 class="heading">About <span>Me</span></h2>
+        <div class="about-content">
+            <p>I am a passionate software development student focused on constructing functional, clean tech implementations. With academic and practical experience across frontend designs and backend architectures, I focus on building optimized database queries and intuitive UI flows.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2 class="heading">My <span>Skills</span></h2>
+        <div class="skills-container">
+            <div class="skill-box"><i class="fab fa-java"></i> <h3>Java</h3></div>
+            <div class="skill-box"><i class="fab fa-python"></i> <h3>Python</h3></div>
+            <div class="skill-box"><i class="fab fa-react"></i> <h3>React.js</h3></div>
+            <div class="skill-box"><i class="fas fa-mobile-alt"></i> <h3>Flutter</h3></div>
+            <div class="skill-box"><i class="fas fa-database"></i> <h3>MySQL</h3></div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2 class="heading">Recent <span>Projects</span></h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h4>Biometric Secure Voting System</h4>
+                <p>Decentralized platform with face recognition authentication and MySQL database handling.</p>
+            </div>
+            <div class="project-card">
+                <h4>Phishing URL Detection Tool</h4>
+                <p>React and Python Flask tool utilizing Random Forest algorithm to evaluate malicious links.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 class="heading">Contact <span>Me!</span></h2>
+        <form id="contactForm">
+            <div class="input-box">
+                <input type="text" id="name" placeholder="Full Name" required>
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+            <textarea id="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+        <p id="formStatus" class="form-status"></p>
+    </section>
+
+    <footer class="footer">
+        <p>Copyright &copy; 2026 by Ashika | All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
