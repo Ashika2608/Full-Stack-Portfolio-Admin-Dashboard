@@ -1,4 +1,11 @@
-com\portfolio\repository\ContactRepository.class
-com\portfolio\entity\Contact.class
 com\portfolio\PortfolioApplication.class
+com\portfolio\UserSkill.class
+com\portfolio\Skill.class
+com\portfolio\ContactRepository.class
+com\portfolio\Project.class
+com\portfolio\UserProfile.class
 com\portfolio\controller\ContactController.class
+com\portfolio\UserProfileRepository.class
+com\portfolio\UserProject.class
+com\portfolio\UserSkillRepository.class
+com\portfolio\Contact.class

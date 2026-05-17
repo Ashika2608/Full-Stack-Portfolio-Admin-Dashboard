@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Portfolio CMS</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f7f6; margin: 0; padding: 20px; }
+        .container { max-width: 700px; background: white; margin: auto; padding: 30px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2, h3 { color: #333; border-bottom: 2px solid #3498db; padding-bottom: 8px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+        input[type="text"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        textarea { height: 80px; resize: vertical; }
+        button { background: #3498db; color: white; border: none; padding: 12px 20px; border-radius: 5px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 15px; }
+        button:hover { background: #2980b9; }
+        .dynamic-item { background: #f9f9f9; padding: 15px; border-left: 4px solid #2ecc71; margin-bottom: 10px; border-radius: 3px; position: relative; }
+        .add-btn { background: #2ecc71; font-size: 14px; padding: 6px 12px; width: auto; margin-bottom: 15px; }
+        .add-btn:hover { background: #27ae60; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>💼 Portfolio Admin Dashboard</h2>
+    <form id="portfolioForm">
+        
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="fullName" placeholder="Enter your full name" required>
+        </div>
+        <div class="form-group">
+            <label>Professional Title</label>
+            <input type="text" id="title" placeholder="e.g. Full Stack Developer / Software Student" required>
+        </div>
+        <div class="form-group">
+            <label>About Text</label>
+            <textarea id="aboutText" placeholder="Write a short bio about yourself..." required></textarea>
+        </div>
+
+        <h3>🛠️ Skills</h3>
+        <div id="skillsContainer"></div>
+        <button type="button" class="add-btn" onclick="addSkillField()">+ Add Skill</button>
+
+        <h3>🚀 Projects</h3>
+        <div id="projectsContainer"></div>
+        <button type="button" class="add-btn" onclick="addProjectField()">+ Add Project</button>
+
+        <button type="submit">💾 Save Portfolio Details</button>
+    </form>
+</div>
+
+<script>
+    // Dynamic Fields Creator
+    function addSkillField() {
+        const div = document.createElement('div');
+        div.className = 'dynamic-item';
+        div.innerHTML = `
+            <div class="form-group"><label>Skill Name</label><input type="text" class="skill-name" placeholder="e.g. Java / React" required></div>
+            <div class="form-group"><label>Skill Level</label><input type="text" class="skill-level" placeholder="e.g. Advanced / Intermediate" required></div>
+        `;
+        document.getElementById('skillsContainer').appendChild(div);
+    }
+
+    function addProjectField() {
+        const div = document.createElement('div');
+        div.className = 'dynamic-item';
+        div.innerHTML = `
+            <div class="form-group"><label>Project Title</label><input type="text" class="project-title" placeholder="Project Name" required></div>
+            <div class="form-group"><label>Description</label><textarea class="project-desc" placeholder="What does this project do?" required></textarea></div>
+            <div class="form-group"><label>Tech Stack Used</label><input type="text" class="project-tech" placeholder="e.g. Spring Boot, MySQL" required></div>
+        `;
+        document.getElementById('projectsContainer').appendChild(div);
+    }
+
+    // Initial setup single empty blocks layout kaaga
+    addSkillField();
+    addProjectField();
+
+    // Form submission processing rules API mapping
+    document.getElementById('portfolioForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Accumulate skill items array list
+        const skills = [];
+        document.querySelectorAll('#skillsContainer .dynamic-item').forEach(item => {
+            skills.push({
+                skillName: item.querySelector('.skill-name').value,
+                level: item.querySelector('.skill-level').value
+            });
+        });
+
+        // Accumulate project entries logic mapping
+        const projects = [];
+        document.querySelectorAll('#projectsContainer .dynamic-item').forEach(item => {
+            projects.push({
+                title: item.querySelector('.project-title').value,
+                description: item.querySelector('.project-desc').value,
+                techStack: item.querySelector('.project-tech').value
+            });
+        });
+
+        // Main payload package object block
+        const payload = {
+            fullName: document.getElementById('fullName').value,
+            title: document.getElementById('title').value,
+            aboutText: document.getElementById('aboutText').value,
+            skills: skills,
+            projects: projects
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/api/profile/save', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (response.ok) {
+                alert('🎉 Mass! Portfolio database data perfectly saved!');
+            } else {
+                alert('❌ Error updating database. Check logs!');
+            }
+        } catch (error) {
+            console.error(error);
+            alert('❌ Unable to connect to Spring Boot server.');
+        }
+    });
+</script>
+</body>
+</html>
